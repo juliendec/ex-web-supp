@@ -1,0 +1,83 @@
+######### NORMAL OPERATION  ###########
+
+### Read all jokes
+GET http://localhost:3000/jokes
+
+### Read all jokes with File variable
+@baseUrl = http://localhost:3000
+GET {{baseUrl}}/jokes
+
+### Read all jokes sorted by title (ascending)
+GET {{baseUrl}}/jokes/?order=+title
+
+### Read all jokes sorted by title (descending)
+GET {{baseUrl}}/jokes/?order=-title
+
+### Read joke identified by eethgdzfefneffe
+GET {{baseUrl}}/jokes/specifique/eethgdzfefneffe
+
+### Read RANDOM joke
+GET {{baseUrl}}/jokes/getJokeRandom/
+
+### Create a joke
+POST {{baseUrl}}/jokes
+Content-Type: application/json
+
+{
+    "title":"une blague ?",
+    "content":"c'ets trop drole"
+}
+
+### Delete joke identified by 3
+DELETE {{baseUrl}}/jokes/beead174-516d-4c7d-a8c9-520a39f86ae9
+
+### Update the joke identified by 3
+PATCH {{baseUrl}}/jokes/b5e19326-1d56-40a5-8bfb-1e98c00e1aa4
+Content-Type: application/json
+
+{
+    "title":"modif blague",
+    "content":"blague content changé"
+}
+
+
+
+
+######### ERROR OPERATION  ###########
+
+### Read joke which does not exists
+GET {{baseUrl}}/jokes/100
+
+### Create a joke which lacks a property
+POST {{baseUrl}}/jokes
+Content-Type: application/json
+
+{
+    "content":"Epinards, Brocolis, Olives vertes, Basilic"
+}
+
+### Create a joke without info for a property
+POST {{baseUrl}}/jokes
+Content-Type: application/json
+
+{
+    "title":"",
+    "content":"Epinards, Brocolis, Olives vertes, Basilic"
+}
+
+### Update for a joke which does not exist
+PUT {{baseUrl}}/jokes/200
+Content-Type: application/json
+
+{
+    "title":"Magic Green 2"
+}
+
+### Update for a joke which does not provide any info for a property
+PUT {{baseUrl}}/jokes/1
+Content-Type: application/json
+
+{
+    "title":"Magic Green 2",
+    "content":""
+}
